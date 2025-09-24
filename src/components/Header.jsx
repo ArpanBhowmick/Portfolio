@@ -117,7 +117,7 @@ const Header = () => {
               delay: 1.6,
               duration: 0.8,
             }}
-            className="ml-4 px-2 py-2 rounded-xl bg-gradient-to-r from-gray-400 to-gray-100 text-violet-700 font-bold hover:from-green-700 hover:to-green-700 hover:text-white transition-all duration-500"
+            className="ml-4 px-2 py-2 rounded-xl bg-gradient-to-r from-gray-400 to-gray-100 text-violet-700 font-bold hover:from-green-700 hover:to-green-700 hover:text-white transition-all duration-500 cursor-pointer"
           >
             Hire me
           </motion.button>
