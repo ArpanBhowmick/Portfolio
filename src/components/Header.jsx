@@ -47,7 +47,7 @@ const Header = () => {
         {/* navigation bar */}
 
         <nav className="lg:flex hidden space-x-8">
-          {["Home", "About", "Projects", "Experience", "Contact"].map(
+          {["Home", "About", "Projects", "Resume", "Contact"].map(
             (item, index) => (
               <motion.a
                 key={item}
@@ -152,7 +152,7 @@ const Header = () => {
         className="md:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg px-4 py-5 space-y-5"
       >
         <nav className="flex flex-col space-y-3">
-          {["Home", "About", "Projects", "Experience", "Contact"].map(
+          {["Home", "About", "Projects", "Resume", "Contact"].map(
             (item) => (
               <a className="text-gray-300 font-medium py-2" key={item} href="#">
                 {item}
