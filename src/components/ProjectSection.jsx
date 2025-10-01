@@ -72,7 +72,7 @@ const ProjectSection = () => {
       }
     );
 
-    // section entrance animation 
+    // section entrance animation
 
     gsap.fromTo(
       triggerRef.current,
@@ -87,23 +87,24 @@ const ProjectSection = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
-           toggleActions: "play none none reverse",
-        }
+          toggleActions: "play none none reverse",
+        },
       }
     );
 
-
     gsap.fromTo(
-      sectionRef.current, {backgroundPosition: "50% 0%"},
-      {backgroundPosition: "50%  100%",
-        ease: "none", 
+      sectionRef.current,
+      { backgroundPosition: "50% 0%" },
+      {
+        backgroundPosition: "50%  100%",
+        ease: "none",
         scrollTrigger: {
-        trigger: sectionRef.current,
-        start:" top 80%",
-        end: "bottom top",
-        scrub:true,
-        // toggleActions: "",
-        }
+          trigger: sectionRef.current,
+          start: " top 80%",
+          end: "bottom top",
+          scrub: true,
+          // toggleActions: "",
+        },
       }
     );
 
@@ -118,51 +119,46 @@ const ProjectSection = () => {
         scrub: 1,
         snap: {
           snapTo: 1 / (projectImages.length - 1),
-          duration: { main: 0.2, max: 0.3},
-          delay: 0.1
+          duration: { main: 0.2, max: 0.3 },
+          delay: 0.1,
         },
         invalidateOnRefresh: true,
         // anticipatePin: 1,
-        
+      },
+    });
+
+    // image animation
+
+    const panels = gsap.utils.toArray(".panel");
+    panels.forEach((panel, i) => {
+      const image = panel.querySelector(".project-image");
+      const imageTitle = panel.querySelector(".project-title");
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: panel,
+          containerAnimation: horizontalScroll,
+          start: "left right",
+          end: "right left",
+          scrub: true,
+        },
+      });
+
+      tl.fromTo(
+        image,
+        { scale: 0, rotate: -20 },
+        { scale: 1, rotate: 1, duration: 0.5 }
+      );
+
+      if (imageTitle) {
+        tl.fromTo(imageTitle, { y: 30 }, { y: -100, duration: 0.3 }, 0.2);
       }
-    })
-
-    // image animation 
-    
-    const panels = gsap.utils.toArray(".panel")
-    panels.forEach((panel, i) =>{
-      const image = panel.querySelector(".project-image")
-      const imageTitle = panel.querySelector(".project-title")
-
-       const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: panel,
-        containerAnimation: horizontalScroll,
-        start: "left right",
-        end: "right left",
-        scrub: true
-      }
-
-    })
-
-     tl.fromTo(image , {scale: 0, rotate: -20, }, {scale: 1, rotate: 1, duration: 0.5,})
-
-    if(imageTitle){
-      tl.fromTo(imageTitle, {y: 30, }, {y: -100, duration: 0.3}, 0.2)
-    }
-
-    })
-
-   
-
-   
-
+    });
   }, [projectImages.length]);
 
   return (
     <section
       ref={sectionRef}
-       
       id="horizontal-section"
       className=" relative w-full overflow-hidden min-h-screen py-20 bg-white "
     >

@@ -6,6 +6,8 @@ import Spline from "@splinetool/react-spline";
 
 
 const AboutSection = () => {
+
+  
   const sectionRef = useRef();
   const titleRef = useRef();
   const introRef = useRef();

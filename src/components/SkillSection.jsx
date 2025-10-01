@@ -83,7 +83,7 @@ const SkillSection = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-6 py-30  overflow-hidden lg:px-60 md:px-24"
+      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#9a74cf50] to-black  text-white px-6 py-30  overflow-hidden lg:px-60 md:px-24"
     >
       <div
         ref={iconBoxRef}

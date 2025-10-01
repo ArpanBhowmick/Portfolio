@@ -7,6 +7,8 @@ import ProjectSection from "./components/ProjectSection";
 import SkillSection from "./components/SkillSection";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap"
+import ContactSection from "./components/ContactSection";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -30,7 +32,9 @@ function App() {
   <CustomCursor/>
   <AboutSection />
   <SkillSection/>
-  <ProjectSection/>
+  {/* <ProjectSection/> */}
+  <ContactSection/>
+  {/* <Footer/> */}
   </>
     
   
