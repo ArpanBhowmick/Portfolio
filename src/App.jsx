@@ -9,6 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap"
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
+import ProgressBar from "./components/ProgressBar";
 
 
 function App() {
@@ -34,7 +35,8 @@ function App() {
   <SkillSection/>
   {/* <ProjectSection/> */}
   <ContactSection/>
-  {/* <Footer/> */}
+  <Footer/>
+  <ProgressBar/>
   </>
     
   

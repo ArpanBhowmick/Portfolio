@@ -124,19 +124,19 @@ const ContactSection = () => {
             className="text-center relative flex flex-col items-center justify-center opacity-0"
             >
 
-                <h1 className="text-black md:w-50 w-[90rem] lg:scale-[0.4] sm:scale-[0.
-                25] scale-[0.07] md:font-bold text-xl sm:text-3xl md:text-5xl lg:text-lg leading-none mb-5 font-bold ">
+                <h1 className="text-black md:w-110 w-[90rem] lg:scale-[0.4] sm:scale-[0.
+                25] scale-[0.07] md:font-bold text-xl sm:text-3xl md:text-5xl lg:text-sm leading-none mb-5 font-bold ">
                      Let's Get in Touch 
                 </h1>
 
-                <p className="text-black lg:w-[40rem] w-[20rem] absolute sm:mt-3 mt-1 md:scale-[0.1] scale-[0.068]">
+                <p className="text-black lg:w-[45rem] w-[25rem] absolute sm:mt-3 mt-1 md:scale-[0.1] scale-[0.068]">
                     Have a project idea or just want to say hi? I'm always excited to connect with fellow developers, designers, and creators. Drop me a message and let's make it happen!
  
                 </p>
 
                 {/* call to action button  */}
 
-                <button className="px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-9 mt-7 text-nowrap ">
+                <button className="px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-7 mt-6 text-nowrap ">
                     contact me 
                 </button>
 
