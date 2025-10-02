@@ -35,7 +35,7 @@ const SkillSection = () => {
         duration: 0.8,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 40%",
+          start: "top 60%",
           toggleActions: "play none none reverse",
         },
       }
@@ -52,7 +52,7 @@ const SkillSection = () => {
         duration: 0.8,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 40%",
+          start: "top 60%",
           toggleActions: "play none none reverse",
         },
       }
@@ -72,7 +72,7 @@ const SkillSection = () => {
         stagger: 0.2,
         scrollTrigger: {
           trigger: "#skills",
-          start: "top 40%",
+          start: "top 60%",
           toggleActions: "play none none reverse",
         },
       }

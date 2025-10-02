@@ -2,26 +2,70 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
 import { FaXTwitter } from "react-icons/fa6";
 import { useState } from "react";
+import { toast } from 'react-hot-toast';
+
 
 const Header = () => {
   // menu state
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    return setIsOpen(!isOpen);
-  };
-
-  // contack form state
+    // contack form state
 
   const [contactFormOpen, setContactFormOpen] = useState(false);
 
-  const openContactForm = () => {
-    return setContactFormOpen(!contactFormOpen);
-  };
-  // const closeContactForm = () => {
-  //   return setContactFormOpen ()
-  // }
+   //  Contact form state (single state)
+
+   const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+    sending: false,
+    status: null,
+  })
+
+   //  Functions
+
+    const toggleMenu = () => setIsOpen(!isOpen);
+    const openContactForm = () => setContactFormOpen(!contactFormOpen);
+  
+    
+
+    // handle form submission function
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      // setForm({ ...form, sending: true });
+      setForm(form => ({ ...form, sending: true }))
+
+      try{
+        const res = await fetch("https://formspree.io/f/mblzygpb",{
+          method:"POST",
+          headers:  { "Content-Type": "application/json", Accept: "application/json" },
+           body: JSON.stringify({
+            name:form.name,
+            email:form.email,
+            message:form.message,
+           }),
+        });
+        if(res.ok) {
+          setForm({name: "", email: "", message: "", sending: false, status: "success" })
+           toast.success("Message sent successfully!");
+        } else {
+          setForm ({ ...form, sending: false, status: "error" })
+          toast.error("Something went wrong. Try again!");
+        }
+      } catch (err) {
+        console.error(err);
+        setForm({ ...form, sending: false, status: "error" });
+        toast.error("Something went wrong. Try again!");
+      }
+
+    };
+  
+ 
+
+
 
   return (
     <header className="absolute w-full z-50 transition-all duration-300">
@@ -220,14 +264,22 @@ const Header = () => {
 
 
             {/* input forms */}
-            <form className="space-y-4">
+            <form 
+            onSubmit={handleSubmit}
+            className="space-y-4">
 
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
                 Name
               </label>
 
-            <input type="text" id="name" placeholder="Your Name" className="w-full px-4 py-2 border border-gray-600 
+            <input
+             type="text"
+              id="name"
+               placeholder="Your Name" 
+               value={form.name}
+               onChange={(e) => setForm({...form, name: e.target.value})}
+               className="w-full px-4 py-2 border border-gray-600 
             focus:outline-none
             rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700" />
             </div>
@@ -237,7 +289,13 @@ const Header = () => {
                 Email
               </label>
 
-            <input type="email" id="email" placeholder="Your Email" className="w-full px-4 py-2 border border-gray-600 
+            <input
+             type="email"
+              id="email"
+              placeholder="Your Email"
+              value={form.email}
+               onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="w-full px-4 py-2 border border-gray-600 
             focus:outline-none
             rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700" />
             </div>
@@ -249,7 +307,11 @@ const Header = () => {
 
             <textarea
             rows="4"
-             id="message" placeholder="How can i help you?" className="w-full px-4 py-2 border border-gray-600 
+             id="message"
+              placeholder="How can i help you?" 
+              value={form.message}
+               onChange={(e) => setForm({...form, message: e.target.value})}
+              className="w-full px-4 py-2 border border-gray-600 
             focus:outline-none
             rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700" />
             </div>
@@ -258,7 +320,17 @@ const Header = () => {
             whileHover={{scale: 1.03}}
             whileTap={{scale: 0.97 }}
             type="submit"
-             className="w-full px-4 py-2 bg-gradient-to-r from-green-600 to-green-400 hover:from-violet-700 hover:to-purple-700 transition-all duration-300 rounded-b-lg shadow-md hover:shadow-lg hover:shadow-green-600/50">Send Message</motion.button>
+            disabled= {form.sending}
+             className="w-full px-4 py-2 bg-gradient-to-r from-green-600 to-green-400 hover:from-violet-700 hover:to-purple-700 transition-all duration-300 rounded-b-lg shadow-md hover:shadow-lg hover:shadow-green-600/50">
+
+              {form.sending ? "Sending..." : "Send Message"}
+
+              </motion.button>
+
+              {/* <div>
+                {form.status === "success" && <p className="text-green-500">Message sent!</p> }
+                {form.status === "error" &&  <p className="text-red-500">Something went wrong.</p>}
+              </div> */}
 
             </form>
 

@@ -10,6 +10,7 @@ import { gsap } from "gsap"
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import ProgressBar from "./components/ProgressBar";
+import { Toaster } from "react-hot-toast";
 
 
 function App() {
@@ -29,11 +30,12 @@ function App() {
 
   return <>
   <Header />
+  <Toaster position="top-right" />
   <HeroSection />
   <CustomCursor/>
   <AboutSection />
   <SkillSection/>
-  {/* <ProjectSection/> */}
+  <ProjectSection/>
   <ContactSection/>
   <Footer/>
   <ProgressBar/>
