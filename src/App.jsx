@@ -11,6 +11,7 @@ import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import ProgressBar from "./components/ProgressBar";
 import { Toaster } from "react-hot-toast";
+import Resume from "./components/ResumePage";
 
 
 function App() {
@@ -34,9 +35,12 @@ function App() {
   <HeroSection />
   <CustomCursor/>
   <AboutSection />
+  
+
   <SkillSection/>
   <ProjectSection/>
   <ContactSection/>
+  {/* <Resume/> */}
   <Footer/>
   <ProgressBar/>
   </>

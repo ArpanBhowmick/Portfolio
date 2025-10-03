@@ -35,7 +35,7 @@ const SkillSection = () => {
         duration: 0.8,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 60%",
+          start: "top 70%",
           toggleActions: "play none none reverse",
         },
       }
@@ -52,7 +52,7 @@ const SkillSection = () => {
         duration: 0.8,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 60%",
+          start: "top 70%",
           toggleActions: "play none none reverse",
         },
       }
@@ -72,7 +72,7 @@ const SkillSection = () => {
         stagger: 0.2,
         scrollTrigger: {
           trigger: "#skills",
-          start: "top 60%",
+          start: "top 70%",
           toggleActions: "play none none reverse",
         },
       }
@@ -83,7 +83,7 @@ const SkillSection = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#9a74cf50] to-black  text-white px-6 py-30  overflow-hidden lg:px-60 md:px-24"
+      className="min-h-screen flex flex-col items-center justify-center  bg-gradient-to-b from-transparent via-[#9a74cf50] to-black  text-white px-6 py-30  overflow-hidden lg:px-60 md:px-24"
     >
       <div
         ref={iconBoxRef}

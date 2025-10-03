@@ -1,11 +1,18 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
 import { FaXTwitter } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from 'react-hot-toast';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 
 const Header = () => {
+
+  // for fixed navigation bar
+
+  const headerRef = useRef(); 
+
   // menu state
 
   const [isOpen, setIsOpen] = useState(false);
@@ -62,14 +69,33 @@ const Header = () => {
       }
 
     };
+
+
+useEffect(() => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.to(headerRef.current, {
+    backgroundColor: "rgba(0,0,0,0)",
+     backdropFilter: "blur(10px)",
+    duration: 0.5,
+    scrollTrigger : {
+      trigger: headerRef.current,
+      start: "top top",
+      end: "bottom+=100 top",
+      scrub: true
+    },
+  })
+
+})
   
  
 
 
 
   return (
-    <header className="absolute w-full z-50 transition-all duration-300">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
+    // absolute top-0  bg-transparent backdrop-blur-md
+    <header ref={headerRef} className=" fixed  w-full z-50 transition-all duration-300 ">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20 ">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -82,7 +108,7 @@ const Header = () => {
           }}
           className="flex items-center"
         >
-          <div className="h-10 w-16 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-black font-bold text-xl mr-3">
+          <div className="h-10 w-16 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-black font-bold text-xl mr-3 ">
             {"<A/B>"}
           </div>
           {/* <span>Arpan Bhowmick</span> */}
@@ -90,7 +116,7 @@ const Header = () => {
 
         {/* navigation bar */}
 
-        <nav className="lg:flex hidden space-x-8">
+        <nav className="lg:flex hidden space-x-8 ">
           {["Home", "About", "Projects", "Resume", "Contact"].map(
             (item, index) => (
               <motion.a
@@ -161,7 +187,7 @@ const Header = () => {
               delay: 1.6,
               duration: 0.8,
             }}
-            className="ml-4 px-2 py-2 rounded-xl bg-gradient-to-r from-gray-400 to-gray-100 text-violet-700 font-bold hover:from-green-700 hover:to-green-700 hover:text-white transition-all duration-500 cursor-pointer"
+            className="ml-4 px-2 py-2 rounded-xl bg-gradient-to-r from-gray-400 to-gray-100 text-violet-700 font-bold hover:from-green-700 hover:to-green-700 hover:text-white transition-all duration-500 cursor-pointer "
           >
             Hire me
           </motion.button>

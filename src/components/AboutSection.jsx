@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import developerImg from "../assets/developer.svg"
 import Spline from "@splinetool/react-spline";
 
 
@@ -25,7 +26,7 @@ const AboutSection = () => {
         duration: 0.8,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 40%",
+          start: "top 80%",
           toggleActions: "play none none reverse",
         },
       }
@@ -37,13 +38,13 @@ const AboutSection = () => {
       introRef.current,
       { y: 100, opacity: 0, filter: "blure(10px)" },
       {
-        y: -400,
+        y: -450,
         opacity: 1,
         filter: "blur(0px)",
         duration: 1.5,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 40%",
+          start: "top 60%",
           toggleActions: "play none none reverse",
         },
       }
@@ -53,7 +54,7 @@ const AboutSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="h-screen relative overflow-hidden bg-gradient-to-b from-black to-[#9a74cf50]"
+      className="h-screen relative overflow-hidden  bg-gradient-to-b from-black via-[#9a74cf50] to-transparent"
     >
 
         {/* <div className="absolute inset-0 overflow-hidden"> */}
@@ -64,10 +65,10 @@ const AboutSection = () => {
 
         {/* </div> */}
 
-      <div className="container mx-auto px-4 h-full flex flex-col items-center justify-center">
+      <div className="container mx-auto px-4 h-full flex flex-col items-center justify-center ">
         <h1
           ref={titleRef}
-          className="text-4xl md:text-6xl font-bold sm:mb-16 text-center text-white opacity-0"
+          className="text-4xl md:text-6xl font-bold sm:mb-16 text-center mt-[-7rem] text-white opacity-0"
         >
           About Me
         </h1>
@@ -80,9 +81,9 @@ const AboutSection = () => {
 
       <div
         ref={introRef}
-        className="absolute lg:bottom-[-15rem] md:bottom-[-23rem] bottom-[-20rem] left-0 w-full flex md:flex-row flex-col justify-center lg:px-24 px-5 items-center"
+        className="absolute lg:bottom-[-25rem] md:bottom-[-20rem] bottom-[-31rem] left-0 w-full flex md:flex-row flex-col  lg:px-24 px-5 items-center opacity-0 gap-10"
       >
-        <h3 className="text-sm md:text-2xl font-bold text-purple-200 z-50 lg:max-w-2xl max-w-[27rem] tracking-wide md:mt-20 sm:mt-[-40rem] mt-[-32rem]">
+        <h3 className="text-sm md:text-lg font-bold text-purple-200 z-50 lg:max-w-2xl max-w-[27rem] tracking-wide md:mt-20 sm:mt-[-37rem] mt-[-35rem]">
           I am a Front-End Developer specializing in building responsive and
           high-performance web applications. Skilled in HTML, CSS, JavaScript,
           React, and modern frameworks, I focus on writing clean, maintainable
@@ -90,6 +91,7 @@ const AboutSection = () => {
           learning new technologies, solving complex problems efficiently, and
           transforming ideas into visually engaging digital solutions.
         </h3>
+        <img className="lg:h-[25rem] md:h-[17rem] h-[15rem] mix-blend-lighten sm:mt-[2rem] md:ml-20" src={developerImg} alt="Developer" />
       </div>
     </section>
   );
