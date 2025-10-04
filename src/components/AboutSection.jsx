@@ -53,6 +53,8 @@ const AboutSection = () => {
 
   return (
     <section
+    id="About"
+    
       ref={sectionRef}
       className="h-screen relative overflow-hidden  bg-gradient-to-b from-black via-[#9a74cf50] to-transparent"
     >

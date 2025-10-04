@@ -3,7 +3,7 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 
-const ContactSection = () => {
+const ContactSection = ({id}) => {
 
     const circleRef = useRef()
     const sectionRef = useRef()
@@ -101,6 +101,7 @@ const ContactSection = () => {
 
   return (
     <section
+    id={id}
     ref={sectionRef}
     className="w-full h-screen overflow-hidden flex items-center justify-center bg-black relative" 
     style={{overscrollBehavior: "none"}}>

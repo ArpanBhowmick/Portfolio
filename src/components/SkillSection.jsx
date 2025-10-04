@@ -81,6 +81,7 @@ const SkillSection = () => {
 
   return (
     <section
+    
       id="skills"
       ref={sectionRef}
       className="min-h-screen flex flex-col items-center justify-center  bg-gradient-to-b from-transparent via-[#9a74cf50] to-black  text-white px-6 py-30  overflow-hidden lg:px-60 md:px-24"

@@ -17,3 +17,7 @@ body{
 /* #horizontal-section {
   overflow-anchor: none;
 } */
+
+html {
+  scroll-behavior: smooth;
+}

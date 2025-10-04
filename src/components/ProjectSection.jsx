@@ -158,8 +158,10 @@ const ProjectSection = () => {
 
   return (
     <section
+    
       ref={sectionRef}
-      id="horizontal-section"
+      // id="horizontal-section"
+      id="Projects"
       className=" relative w-full overflow-hidden min-h-screen py-20 bg-white "
     >
       {/* section title */}

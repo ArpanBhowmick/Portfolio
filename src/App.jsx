@@ -32,14 +32,14 @@ function App() {
   return <>
   <Header />
   <Toaster position="top-right" />
-  <HeroSection />
-  <CustomCursor/>
-  <AboutSection />
+  <HeroSection id="Home" />
+  <CustomCursor />
+  <AboutSection id="About" />
   
 
-  <SkillSection/>
-  <ProjectSection/>
-  <ContactSection/>
+  <SkillSection id="About"/>
+  <ProjectSection id="Projects"/>
+  <ContactSection id="Contact"/>
   {/* <Resume/> */}
   <Footer/>
   <ProgressBar/>
