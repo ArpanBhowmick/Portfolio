@@ -162,7 +162,7 @@ const ProjectSection = () => {
       ref={sectionRef}
       // id="horizontal-section"
       id="Projects"
-      className=" relative w-full overflow-hidden min-h-screen py-20 bg-white "
+      className=" relative w-full overflow-hidden min-h-screen py-20 bg-white scroll-mt-12"
     >
       {/* section title */}
 

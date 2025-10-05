@@ -11,7 +11,9 @@ import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import ProgressBar from "./components/ProgressBar";
 import { Toaster } from "react-hot-toast";
-import Resume from "./components/ResumePage";
+import ResumePage from "./components/ResumePage";
+import StarBackground from "./components/StarBackground";
+import { Route, Routes } from "react-router-dom";
 
 
 function App() {
@@ -26,25 +28,44 @@ function App() {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill() )
     }
 
-  }, [])
- 
+  }, []);
 
-  return <>
+  const HomePage = () => {
+    return(
+
+    <>
   <Header />
   <Toaster position="top-right" />
   <HeroSection id="Home" />
   <CustomCursor />
-  <AboutSection id="About" />
-  
 
+{/* start background  */}
+
+<StarBackground>
+  <AboutSection id="About" />
   <SkillSection id="About"/>
+</StarBackground>
+
   <ProjectSection id="Projects"/>
   <ContactSection id="Contact"/>
-  {/* <Resume/> */}
+
   <Footer/>
   <ProgressBar/>
   </>
+    )
+  }
+
+  
+ 
+
+  return (
     
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/resume" element={<ResumePage/>} />
+      </Routes>
+    
+  )
   
 }
 

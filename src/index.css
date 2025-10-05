@@ -18,6 +18,18 @@ body{
   overflow-anchor: none;
 } */
 
-html {
-  scroll-behavior: smooth;
+/* html {
+  scroll-padding-top: 4rem; 
 }
+
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 5rem; 
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 7rem; 
+  }
+} */

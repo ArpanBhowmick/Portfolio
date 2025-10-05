@@ -13,7 +13,8 @@ const Header = () => {
   const headerRef = useRef();
 
   // navigation
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  
 
   // menu state
 
@@ -92,6 +93,8 @@ const Header = () => {
         scrub: true,
       },
     });
+
+
   });
 
   //  const navItems = ["Home", "About", "Projects", "Resume", "Contact"]
@@ -250,6 +253,7 @@ const Header = () => {
                 setTimeout(() => {
                   
                   if (item === "Resume") {
+                    setContactFormOpen(false)
                     navigate("/resume");
                   } else {
                     const section = document.getElementById(item);

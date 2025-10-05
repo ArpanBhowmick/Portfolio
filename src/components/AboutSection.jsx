@@ -56,7 +56,7 @@ const AboutSection = () => {
     id="About"
     
       ref={sectionRef}
-      className="h-screen relative overflow-hidden  bg-gradient-to-b from-black via-[#9a74cf50] to-transparent"
+      className="h-screen relative overflow-hidden  bg-gradient-to-b from-black via-[#9a74cf50] to-transparent scroll-mt-28"
     >
 
         {/* <div className="absolute inset-0 overflow-hidden"> */}

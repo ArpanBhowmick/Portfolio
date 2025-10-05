@@ -1,29 +1,41 @@
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-const Resume = () => {
+function ResumePage() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 50 }}
-      transition={{ duration: 0.8 }}
-      className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-6"
-    >
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-6">
+      {/* Title */}
       <h1 className="text-4xl font-bold mb-6">My Resume</h1>
-      <iframe
-        src="/public/projects/Resume.pdf"
-        className="w-full max-w-3xl h-[600px] mb-6 border border-gray-700 overflow-hidden"
-        title="Resume"
-      ></iframe>
-      <a
-        href="/public/projects/Resume.pdf"
-        download
-        className="px-6 py-3 bg-violet-600 hover:bg-violet-500 rounded-lg font-bold transition-colors"
-      >
-        Download Resume
-      </a>
-    </motion.div>
-  );
-};
 
-export default Resume;
+      {/* Embedded PDF viewer */}
+      <div className="w-full max-w-4xl h-[80vh] border-2 border-gray-700 rounded-lg overflow-hidden shadow-lg">
+        <iframe
+          src="/project/resume.pdf"   // 👈 make sure your PDF is inside public/project/resume.pdf
+          title="Resume"
+          className="w-full h-full"
+        ></iframe>
+      </div>
+
+      {/* Buttons */}
+      <div className="mt-6 flex gap-4">
+        {/* Download button */}
+        <a
+          href="/project/resume.pdf"
+          download="My_Resume.pdf"
+          className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition"
+        >
+          Download Resume
+        </a>
+
+        {/* Back to Home button */}
+        <Link
+          to="/"
+          className="px-6 py-3 bg-gray-700 hover:bg-gray-800 rounded-lg font-medium transition"
+        >
+          Back to Home
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default ResumePage;
