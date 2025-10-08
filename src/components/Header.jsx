@@ -82,30 +82,83 @@ const Header = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to(headerRef.current, {
-      backgroundColor: "rgba(0,0,0,0)",
-      backdropFilter: "blur(10px)",
-      duration: 0.5,
-      scrollTrigger: {
-        trigger: headerRef.current,
-        start: "top top",
-        end: "bottom+=100 top",
-        scrub: true,
-      },
-    });
+    // gsap.fromTo(headerRef.current, {
+    //   backgroundColor: "rgba(0,0,0,0)",
+    //   backdropFilter: "blur(0px)",
+    // }, 
+    // {
+    //   backgroundColor: "rgba(0,0,0,0.4)", // darkens slightly
+    //   backdropFilter: "blur(10px)",       // blur effect on scroll
+    //   duration: 0.3,
+    //   scrollTrigger: {
+    //     trigger: document.body,
+    //     start: "top+=50 top", // after 50px scroll
+    //     end: "bottom top",
+    //     scrub: true,
+        
+    //   },
+    // });
 
+
+    const projectsSection = document.getElementById("Projects");
+
+  ScrollTrigger.create({
+    trigger: document.body,
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+    onUpdate: (self) => {
+      const scroll = self.scroll();
+      const projectsTop = projectsSection.offsetTop;
+      const projectsBottom = projectsTop + projectsSection.offsetHeight;
+
+    //   if (scroll >= projectsTop && scroll <= projectsBottom) {
+    //     // inside Projects → no blur
+    //     headerRef.current.style.backgroundColor = "rgba(0,0,0,0)";
+    //     headerRef.current.style.backdropFilter = "blur(0px)";
+    //   } else {
+    //     // outside Projects → blur + background
+    //     headerRef.current.style.backgroundColor = "rgba(0,0,0,0)";
+    //     headerRef.current.style.backdropFilter = "blur(10px)";
+    //   }
+    // },
+
+     if (scroll < 50) {
+        // At the very top → transparent
+        headerRef.current.style.backgroundColor = "rgba(0,0,0,0)";
+        headerRef.current.style.backdropFilter = "blur(0px)";
+      } else if (scroll >= projectsTop && scroll <= projectsBottom) {
+        // Inside Projects → transparent
+        headerRef.current.style.backgroundColor = "rgba(0,0,0,0)";
+        headerRef.current.style.backdropFilter = "blur(0px)";
+      } else {
+        // Everywhere else → blur
+        headerRef.current.style.backgroundColor = "rgba(0,0,0,0)";
+        headerRef.current.style.backdropFilter = "blur(10px)";
+      }
+    },
 
   });
 
-  //  const navItems = ["Home", "About", "Projects", "Resume", "Contact"]
+  return () => {
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  };
+
+
+  },[]);
+
+
 
   return (
     // absolute top-0  bg-transparent backdrop-blur-md
     <header
       ref={headerRef}
-      className=" fixed  w-full z-50 transition-all duration-300 "
+      className=" fixed  w-full z-50 transition-all duration-300 shadow-lg h-16 md:h-21"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20 ">
+        {/* h-16 md:h-20 */}
+        {/* h-16 md:h-12 lg:h-20
+      pt-0 md:pt-10 lg:pt-0  */}
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -143,7 +196,10 @@ const Header = () => {
                 // href="#"
                 onClick={() => {
                   if (item === "Resume") {
-                    // window.Location.href = "/resume";
+                    
+                     // Kill all active ScrollTriggers before navigating
+
+                    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
                     navigate("/resume");
                   } else {
                     const section = document.getElementById(item);
@@ -239,6 +295,7 @@ const Header = () => {
         }}
         transition={{ duration: 0.5 }}
         className="lg:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg px-4 py-5 space-y-5"
+        
       >
         <nav className="flex flex-col space-y-3">
           {["Home", "About", "Projects", "Resume", "Contact"].map((item) => (
@@ -253,6 +310,8 @@ const Header = () => {
                 setTimeout(() => {
                   
                   if (item === "Resume") {
+                       // Kill all active ScrollTriggers before navigating
+                      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
                     setContactFormOpen(false)
                     navigate("/resume");
                   } else {
@@ -302,13 +361,26 @@ const Header = () => {
 
       <AnimatePresence>
         {contactFormOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          >
+
+          // <motion.div
+          //   initial={{ opacity: 0 }}
+          //   animate={{ opacity: 1 }}
+          //   exit={{ opacity: 0 }}
+          //   transition={{ duration: 0.5 }}
+          //   className="fixed  inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          // >
+
+            <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+       transition={{ duration: 0.5 }}
+      className="absolute top-0 left-0 w-full h-screen z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      style={{ pointerEvents: "auto" }} // ensures clicks work
+    >
+
+
+
             <motion.div
               initial={{ scale: 0.8, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -319,8 +391,21 @@ const Header = () => {
                 stiffness: 200,
                 duration: 0.8,
               }}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md p-6"
+              className=" bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md p-6"
             >
+
+               {/* <motion.div
+        initial={{ scale: 0.8, opacity: 0, y: 0 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.8, opacity: 0, y: 0 }}
+        className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md p-6"
+      > */}
+
+
+
+
+
+
               <div className="flex justify-between items-center mb-4">
                 <h1 className="text-2xl font-bold text-gray-300">
                   Get In Touch
