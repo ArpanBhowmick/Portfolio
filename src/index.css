@@ -33,3 +33,7 @@ body{
     scroll-padding-top: 7rem; 
   }
 } */
+
+html {
+  scroll-behavior: smooth;
+}

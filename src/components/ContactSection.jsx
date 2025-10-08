@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import ContactFormModal from "./ContactFormModal"
 
 
 const ContactSection = ({id}) => {
@@ -137,7 +138,7 @@ const ContactSection = ({id}) => {
 
                 {/* call to action button  */}
 
-                <button className="px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-7 mt-6 text-nowrap ">
+                <button className="px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-7 mt-6 text-nowrap "  onClick={() => window.dispatchEvent(new Event("openContactModal"))}>
                     contact me 
                 </button>
 

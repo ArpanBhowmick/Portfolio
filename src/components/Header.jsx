@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
 import { FaXTwitter } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate } from "react-router-dom";
+import ContactFormModal from "./ContactFormModal";
 
 const Header = () => {
   // for fixed navigation bar
@@ -14,7 +15,6 @@ const Header = () => {
 
   // navigation
   const navigate = useNavigate();
-  
 
   // menu state
 
@@ -82,78 +82,63 @@ const Header = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // gsap.fromTo(headerRef.current, {
-    //   backgroundColor: "rgba(0,0,0,0)",
-    //   backdropFilter: "blur(0px)",
-    // }, 
-    // {
-    //   backgroundColor: "rgba(0,0,0,0.4)", // darkens slightly
-    //   backdropFilter: "blur(10px)",       // blur effect on scroll
-    //   duration: 0.3,
-    //   scrollTrigger: {
-    //     trigger: document.body,
-    //     start: "top+=50 top", // after 50px scroll
-    //     end: "bottom top",
-    //     scrub: true,
-        
-    //   },
-    // });
+    const openModalHandler = () => setContactFormOpen(true);
+    window.addEventListener("openContactModal", openModalHandler);
 
+  
 
     const projectsSection = document.getElementById("Projects");
 
-  ScrollTrigger.create({
-    trigger: document.body,
-    start: "top top",
-    end: "bottom top",
-    scrub: true,
-    onUpdate: (self) => {
-      const scroll = self.scroll();
+    const updateHeaderStyle = () => {
+      const scroll = window.scrollY; // current scroll
       const projectsTop = projectsSection.offsetTop;
       const projectsBottom = projectsTop + projectsSection.offsetHeight;
 
-    //   if (scroll >= projectsTop && scroll <= projectsBottom) {
-    //     // inside Projects → no blur
-    //     headerRef.current.style.backgroundColor = "rgba(0,0,0,0)";
-    //     headerRef.current.style.backdropFilter = "blur(0px)";
-    //   } else {
-    //     // outside Projects → blur + background
-    //     headerRef.current.style.backgroundColor = "rgba(0,0,0,0)";
-    //     headerRef.current.style.backdropFilter = "blur(10px)";
-    //   }
-    // },
+     
 
-     if (scroll < 50) {
+      if (scroll < 50) {
         // At the very top → transparent
         headerRef.current.style.backgroundColor = "rgba(0,0,0,0)";
         headerRef.current.style.backdropFilter = "blur(0px)";
+        headerRef.current.classList.remove("shadow-lg");
       } else if (scroll >= projectsTop && scroll <= projectsBottom) {
         // Inside Projects → transparent
         headerRef.current.style.backgroundColor = "rgba(0,0,0,0)";
+
         headerRef.current.style.backdropFilter = "blur(0px)";
+        headerRef.current.classList.add("shadow-lg");
       } else {
         // Everywhere else → blur
         headerRef.current.style.backgroundColor = "rgba(0,0,0,0)";
         headerRef.current.style.backdropFilter = "blur(10px)";
+        headerRef.current.classList.add("shadow-lg");
       }
-    },
+    };
 
-  });
+    updateHeaderStyle();
+    // ScrollTrigger instance
+    const scrollTriggerInstance = ScrollTrigger.create({
+      trigger: document.body,
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+      onUpdate: updateHeaderStyle,
+    });
 
-  return () => {
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-  };
+    
+    return () => {
+      window.removeEventListener("openContactModal", openModalHandler);
+      scrollTriggerInstance.kill();
+    };
 
 
-  },[]);
-
-
+  }, []);
 
   return (
     // absolute top-0  bg-transparent backdrop-blur-md
     <header
       ref={headerRef}
-      className=" fixed  w-full z-50 transition-all duration-300 shadow-lg h-16 md:h-21"
+      className=" fixed shadow-lg w-full z-50 transition-all duration-300  h-16 md:h-21"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20 ">
         {/* h-16 md:h-20 */}
@@ -179,8 +164,10 @@ const Header = () => {
 
         {/* navigation bar */}
 
+
+ 
         <nav className="lg:flex hidden space-x-8 ">
-          {["Home", "About", "Projects", "Resume", "Contact"].map(
+          {["Home", "About", "Projects", "Contact"].map(
             (item, index) => (
               <motion.a
                 key={item}
@@ -192,14 +179,13 @@ const Header = () => {
                   damping: 20,
                   delay: 0.7 + index * 0.2,
                 }}
-                className="relative text-gray-800 hover:text-violet-600 dark:text-gray-200 dark:hover:text-violet-400 font-medium transition-colors duration-300 group"
+                className="relative  text-gray-800 hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400 font-medium transition-colors duration-300 group"
                 // href="#"
                 onClick={() => {
                   if (item === "Resume") {
-                    
-                     // Kill all active ScrollTriggers before navigating
+                    // Kill all active ScrollTriggers before navigating
 
-                    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+                    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
                     navigate("/resume");
                   } else {
                     const section = document.getElementById(item);
@@ -295,24 +281,22 @@ const Header = () => {
         }}
         transition={{ duration: 0.5 }}
         className="lg:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg px-4 py-5 space-y-5"
-        
       >
         <nav className="flex flex-col space-y-3">
-          {["Home", "About", "Projects", "Resume", "Contact"].map((item) => (
+          {["Home", "About", "Projects", "Contact"].map((item) => (
             <a
               className="text-gray-300 font-medium py-2 hover:text-violet-600"
               key={item}
               // href="#"
 
               onClick={(e) => {
-                e.preventDefault(); 
-                setIsOpen(false); 
+                e.preventDefault();
+                setIsOpen(false);
                 setTimeout(() => {
-                  
                   if (item === "Resume") {
-                       // Kill all active ScrollTriggers before navigating
-                      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-                    setContactFormOpen(false)
+                    // Kill all active ScrollTriggers before navigating
+                    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+                    setContactFormOpen(false);
                     navigate("/resume");
                   } else {
                     const section = document.getElementById(item);
@@ -331,21 +315,21 @@ const Header = () => {
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
           <div className="flex space-x-5">
             <a href="">
-              <FiGithub className="h-5 w-5" />
+              <FiGithub className="h-5 w-5 hover:text-violet-600 dark:hover:text-violet-400" />
             </a>
 
             <a href="">
-              <FaXTwitter className="h-5 w-5" />
+              <FaXTwitter className="h-5 w-5 hover:text-violet-600 dark:hover:text-violet-400" />
             </a>
 
             <a href="">
-              <FiLinkedin className="h-5 w-5" />
+              <FiLinkedin className="h-5 w-5 hover:text-violet-600 dark:hover:text-violet-400" />
             </a>
           </div>
 
           <motion.button
-           whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => {
               toggleMenu();
               openContactForm();
@@ -359,148 +343,13 @@ const Header = () => {
 
       {/* Contact form */}
 
-      <AnimatePresence>
-        {contactFormOpen && (
-
-          // <motion.div
-          //   initial={{ opacity: 0 }}
-          //   animate={{ opacity: 1 }}
-          //   exit={{ opacity: 0 }}
-          //   transition={{ duration: 0.5 }}
-          //   className="fixed  inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          // >
-
-            <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-       transition={{ duration: 0.5 }}
-      className="absolute top-0 left-0 w-full h-screen z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
-      style={{ pointerEvents: "auto" }} // ensures clicks work
-    >
-
-
-
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0, y: 30 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 30 }}
-              transition={{
-                type: "spring",
-                damping: 30,
-                stiffness: 200,
-                duration: 0.8,
-              }}
-              className=" bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md p-6"
-            >
-
-               {/* <motion.div
-        initial={{ scale: 0.8, opacity: 0, y: 0 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.8, opacity: 0, y: 0 }}
-        className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md p-6"
-      > */}
-
-
-
-
-
-
-              <div className="flex justify-between items-center mb-4">
-                <h1 className="text-2xl font-bold text-gray-300">
-                  Get In Touch
-                </h1>
-
-                <button onClick={openContactForm}>
-                  <FiX className="w-5 h-5 text-gray-300 font-extrabold" />
-                </button>
-              </div>
-
-              {/* input forms */}
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-300 mb-1"
-                  >
-                    Name
-                  </label>
-
-                  <input
-                    type="text"
-                    id="name"
-                    placeholder="Your Name"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-600 
-            focus:outline-none
-            rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-300 mb-1"
-                  >
-                    Email
-                  </label>
-
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="Your Email"
-                    value={form.email}
-                    onChange={(e) =>
-                      setForm({ ...form, email: e.target.value })
-                    }
-                    className="w-full px-4 py-2 border border-gray-600 
-            focus:outline-none
-            rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-300 mb-1"
-                  >
-                    Message
-                  </label>
-
-                  <textarea
-                    rows="4"
-                    id="message"
-                    placeholder="How can i help you?"
-                    value={form.message}
-                    onChange={(e) =>
-                      setForm({ ...form, message: e.target.value })
-                    }
-                    className="w-full px-4 py-2 border border-gray-600 
-            focus:outline-none
-            rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
-                  />
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  type="submit"
-                  disabled={form.sending}
-                  className="w-full px-4 py-2 bg-gradient-to-r from-green-600 to-green-400 hover:from-violet-700 hover:to-purple-700 transition-all duration-300 rounded-b-lg shadow-md hover:shadow-lg hover:shadow-green-600/50"
-                >
-                  {form.sending ? "Sending..." : "Send Message"}
-                </motion.button>
-
-                {/* <div>
-                {form.status === "success" && <p className="text-green-500">Message sent!</p> }
-                {form.status === "error" &&  <p className="text-red-500">Something went wrong.</p>}
-              </div> */}
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <ContactFormModal
+        contactFormOpen={contactFormOpen}
+        openContactForm={openContactForm}
+        form={form}
+        setForm={setForm}
+        handleSubmit={handleSubmit}
+      />
     </header>
   );
 };

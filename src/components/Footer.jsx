@@ -1,5 +1,5 @@
-import { FaXTwitter } from "react-icons/fa6"
-import { FiGithub, FiLinkedin } from "react-icons/fi"
+import { FaXTwitter } from "react-icons/fa6";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
 
 
 const Footer = () => {
@@ -7,9 +7,15 @@ const Footer = () => {
     <footer className="bg-black text-white py-10 mt-10">
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-purple-200 bg-clip-text text-transparent">
-            Arpan
-          </h2>
+          <div className="flex justify-between items-center">
+            <div  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="h-10 w-16 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-black font-bold text-xl mr-3 ">
+              
+                {"<A/B>"}
+              
+              
+            </div>
+            {/* <span>Arpan Bhowmick</span> */}
+          </div>
 
           <div>
             <h3 className="text-xl font-semibold mb-4 text-purple-200">
@@ -56,7 +62,7 @@ const Footer = () => {
               className="text-gray-500 hover:text-white text-sm transition-colors"
               href="#"
             >
-              Terms of service 
+              Terms of service
             </a>
 
             <a
@@ -70,6 +76,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-}
+};
 
-export default Footer
+export default Footer;
