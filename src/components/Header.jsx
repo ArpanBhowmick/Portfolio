@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate } from "react-router-dom";
-import ContactFormModal from "./ContactFormModal";
+import ContactFormModal from "./forms/ContactFormModal";
 
 const Header = () => {
   // for fixed navigation bar

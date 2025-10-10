@@ -1,18 +1,18 @@
 import { useEffect } from "react";
-import AboutSection from "./components/AboutSection";
+import AboutSection from "./components/sections/AboutSection";
 import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
-import ProjectSection from "./components/ProjectSection";
-import SkillSection from "./components/SkillSection";
+import HeroSection from "./components/sections/HeroSection";
+import ProjectSection from "./components/sections/ProjectSection";
+import SkillSection from "./components/sections/SkillSection";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap"
-import ContactSection from "./components/ContactSection";
+import ContactSection from "./components/sections/ContactSection";
 import Footer from "./components/Footer";
 import ProgressBar from "./components/ProgressBar";
 import { Toaster } from "react-hot-toast";
-import ResumePage from "./components/ResumePage";
-import StarBackground from "./components/StarBackground";
+import ResumePage from "./components/sections/ResumePage";
+import StarBackground from "./components/effects/StarBackground";
 import { Route, Routes} from "react-router-dom";
 
 
@@ -30,7 +30,7 @@ function App() {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill() )
     }
 
-  });
+  }, []);
 
   const HomePage = () => {
     return(
