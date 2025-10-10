@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import developerImg from "../assets/developer.svg"
-import Spline from "@splinetool/react-spline";
+
 
 
 
@@ -59,13 +59,7 @@ const AboutSection = () => {
       className="h-screen relative overflow-hidden  bg-gradient-to-b from-black via-[#9a74cf50] to-transparent scroll-mt-28"
     >
 
-        {/* <div className="absolute inset-0 overflow-hidden"> */}
-
-            {/* stars  */}
-
-            {/* {[...Array(10).map(())]} */}
-
-        {/* </div> */}
+    
 
       <div className="container mx-auto px-4 h-full flex flex-col items-center justify-center ">
         <h1
@@ -76,10 +70,7 @@ const AboutSection = () => {
         </h1>
       </div>
 
-      {/* <Spline
-        className="absolute top-0 left-0 w-full h-full object-cover z-0 "
-        scene="https://prod.spline.design/KeE4lpx2xnLG4OBd/scene.splinecode"
-      /> */}
+     
 
       <div
         ref={introRef}
@@ -101,6 +92,3 @@ const AboutSection = () => {
 
 export default AboutSection;
 
-// styling for h3:  text-xl  md:text-2xl font-bold text-purple-200 z-50 max-w-2xl text-center tracking-wide
-
-// for div: absolute bottom-60 xl:bottom-60 md:bottom-60 left-0 w-full flex justify-center px-5

@@ -25,7 +25,7 @@ const Footer = () => {
             <div className="flex space-x-4">
               <a
                 className="text-gray-700 hover:text-violet-400 transition-colors"
-                href="#"
+                href="https://github.com/ArpanBhowmick"
               >
                 <FiGithub className="w-5 h-5" />
               </a>
@@ -37,7 +37,7 @@ const Footer = () => {
               </a>
               <a
                 className="text-gray-700 hover:text-violet-400 transition-colors"
-                href="#"
+                href="https://www.linkedin.com/in/arpan-bhowmick28/"
               >
                 <FaXTwitter className="w-5 h-5" />
               </a>

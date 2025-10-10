@@ -17,18 +17,21 @@ const ProjectSection = () => {
       id: 1,
       title: "Todo App",
       imageSrc: "/projects/project-1.png",
+      link:"https://todo-app-28.vercel.app/",
     },
 
     {
       id: 2,
       title: "prject-2",
       imageSrc: "/projects/project-2.png",
+      link:"",
     },
 
     {
       id: 3,
       title: "prject-3",
       imageSrc: "/projects/project-3.png",
+      link:"",
     },
   ];
 
@@ -192,7 +195,9 @@ const ProjectSection = () => {
               key={project.id}
               className="panel w-full  min-h-[50vh] md:h-screen mt-8 md:mt-0 relative flex items-center justify-center "
             >
-              <div className="relative w-full h-full flex flex-col items-center justify-center p-4  sm:p-8 md:p-12 ">
+              <a 
+               href={project.link}
+               className="relative w-full h-full flex flex-col items-center justify-center p-4  sm:p-8 md:p-12 ">
                 <img
                   className="project-image max-w-full max-h-full rounded-2xl object-cover "
                   src={project.imageSrc}
@@ -202,7 +207,7 @@ const ProjectSection = () => {
                 <h2 className="project-title flex items-center gap-3 md:text-3xl text-sm text-black mt-6 z-50 white-space: nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer ">
                   {project.title} <CiShare1 />
                 </h2>
-              </div>
+              </a>
             </div>
           ))}
         </div>

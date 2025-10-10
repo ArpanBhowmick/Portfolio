@@ -42,7 +42,7 @@ const HeroSection = () => {
 
       {/* right section  */}
 
-          {/* <Spline className="absolute  right-0 xl:left-[28%] top-[-25%] lg:top-0" scene="https://prod.spline.design/llAinHObO2daCKVr/scene.splinecode" /> */}
+       
 
           <Spline className="absolute  right-0 xl:left-[28%] top-[-25%] lg:top-0" scene="https://prod.spline.design/llAinHObO2daCKVr/scene.splinecode" />
 
@@ -56,4 +56,3 @@ const HeroSection = () => {
 
 export default HeroSection
 
-//  I am a Front-End Developer specializing in creating responsive, accessible, and visually engaging web applications that deliver seamless user experiences. With a strong focus on writing clean, maintainable code and implementing modern UI practices, I aim to bridge the gap between design and functionality. I am continuously expanding my technical skills and look forward to contributing to innovative projects where I can add value through both creativity and precision.

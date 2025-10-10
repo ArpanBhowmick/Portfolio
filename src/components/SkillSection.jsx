@@ -1,9 +1,19 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt } from "react-icons/fa";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaGitAlt,
+  FaBootstrap,
+} from "react-icons/fa";
+import { SiRedux, SiReactrouter, SiFramer } from "react-icons/si";
 import { SiTailwindcss } from "react-icons/si";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
+
+
 
 
 
@@ -12,7 +22,13 @@ const SKILLS = [
   { name: "CSS", Icon: FaCss3Alt, color: "#3b82f6" },
   { name: "JavaScript", Icon: FaJs, color: "#facc15" },
   { name: "React", Icon: FaReact, color: "#22d3ee" },
+  { name: "Redux", Icon: SiRedux, color: "#7c3aed" },
+  { name: "React Router", Icon: SiReactrouter, color: "#f87171" },
+
   { name: "Tailwind", Icon: SiTailwindcss, color: "#14b8a6" },
+  { name: "Bootstrap", Icon: FaBootstrap, color: "#7952B3" },
+
+  { name: "Framer Motion", Icon: SiFramer, color: "#e91e63" },
   { name: "Git", Icon: FaGitAlt, color: "#ef4444" },
 ];
 
@@ -24,7 +40,7 @@ const SkillSection = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // title animation 
+    // title animation
 
     gsap.fromTo(
       titleRef.current,
@@ -58,8 +74,7 @@ const SkillSection = () => {
       }
     );
 
-    
-    // skill cards animation 
+    // skill cards animation
 
     gsap.fromTo(
       ".skill-card",
@@ -77,17 +92,21 @@ const SkillSection = () => {
         },
       }
     );
-  });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
     <section
-    
       id="skills"
       ref={sectionRef}
       className="min-h-screen flex flex-col items-center justify-center  bg-gradient-to-b from-transparent via-[#9a74cf50] to-black  text-white px-6 py-30  overflow-hidden lg:px-60 md:px-24"
     >
       <div
         ref={iconBoxRef}
+        
         className="w-full max-w-6xl border-2  border-gray-700 rounded-2xl sm:p-8 bg-white/5 shadow-inner p-6 "
       >
         <h2 ref={titleRef} className="text-4xl font-bold mb-10 text-center">
@@ -100,16 +119,11 @@ const SkillSection = () => {
 
             return (
               <motion.div
+              
                 key={s.name}
                 className="skill-card relative flex flex-col items-center justify-center w-28 h-28 rounded-xl border-2 border-gray-700 bg-white/5 cursor-pointer z-10"
-                // initial={{ opacity: 0, y: 80 }}
-                // animate={{ opacity: 1, y: 0 }}
-                // transition={{
-                //   type: "spring",
-                //   stiffness: 40,
-                //   damping: 25,
-                //   delay: i * 0.2,
-                // }}
+                
+                
                 whileHover={{
                   boxShadow: `0 0 12px ${s.color}, 0 0 25px ${s.color}`,
                   borderColor: s.color,

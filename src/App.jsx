@@ -13,22 +13,24 @@ import ProgressBar from "./components/ProgressBar";
 import { Toaster } from "react-hot-toast";
 import ResumePage from "./components/ResumePage";
 import StarBackground from "./components/StarBackground";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes} from "react-router-dom";
 
 
 function App() {
+
 
   useEffect(() => {
 
     gsap.registerPlugin(ScrollTrigger)
 
     ScrollTrigger.refresh()
+    
 
     return () =>{
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill() )
     }
 
-  }, []);
+  });
 
   const HomePage = () => {
     return(
@@ -62,7 +64,16 @@ function App() {
     
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/resume" element={<ResumePage/>} /> */}
+
+        <Route path="/resume" element={
+          <>
+          <CustomCursor />
+          <StarBackground>
+          <ResumePage/>
+</StarBackground>
+</>
+          } />
+
       </Routes>
     
   )

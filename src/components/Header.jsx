@@ -156,7 +156,9 @@ const Header = () => {
           }}
           className="flex items-center"
         >
-          <div className="h-10 w-16 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-black font-bold text-xl mr-3 ">
+          <div
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+           className="h-10 w-16 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-black font-bold text-xl mr-3 ">
             {"<A/B>"}
           </div>
           {/* <span>Arpan Bhowmick</span> */}
@@ -167,7 +169,7 @@ const Header = () => {
 
  
         <nav className="lg:flex hidden space-x-8 ">
-          {["Home", "About", "Projects", "Contact"].map(
+          {["Home", "About", "Projects", "Contact","Resume"].map(
             (item, index) => (
               <motion.a
                 key={item}
@@ -210,7 +212,7 @@ const Header = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.3, duration: 0.8 }}
             className="text-gray-700 hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400 transition-colors duration-300"
-            href="#"
+            href="https://github.com/ArpanBhowmick"
           >
             <FiGithub className="w-5 h-5" />
           </motion.a>
@@ -230,7 +232,7 @@ const Header = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.3, duration: 0.8 }}
             className="text-gray-700 hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400 transition-colors duration-300"
-            href="#"
+            href="https://www.linkedin.com/in/arpan-bhowmick28/"
           >
             <FiLinkedin className="w-5 h-5" />
           </motion.a>
@@ -283,11 +285,11 @@ const Header = () => {
         className="lg:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg px-4 py-5 space-y-5"
       >
         <nav className="flex flex-col space-y-3">
-          {["Home", "About", "Projects", "Contact"].map((item) => (
+          {["Home", "About", "Projects", "Contact", "Resume"].map((item) => (
             <a
               className="text-gray-300 font-medium py-2 hover:text-violet-600"
               key={item}
-              // href="#"
+              
 
               onClick={(e) => {
                 e.preventDefault();
@@ -314,7 +316,7 @@ const Header = () => {
 
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
           <div className="flex space-x-5">
-            <a href="">
+            <a href="https://github.com/ArpanBhowmick">
               <FiGithub className="h-5 w-5 hover:text-violet-600 dark:hover:text-violet-400" />
             </a>
 
@@ -322,7 +324,7 @@ const Header = () => {
               <FaXTwitter className="h-5 w-5 hover:text-violet-600 dark:hover:text-violet-400" />
             </a>
 
-            <a href="">
+            <a href="https://www.linkedin.com/in/arpan-bhowmick28/">
               <FiLinkedin className="h-5 w-5 hover:text-violet-600 dark:hover:text-violet-400" />
             </a>
           </div>
