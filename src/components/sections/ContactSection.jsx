@@ -131,7 +131,7 @@ const ContactSection = ({id}) => {
                      Let's Get in Touch 
                 </h1>
 
-                <p className="text-black lg:w-[45rem] w-[25rem] absolute sm:mt-3 mt-1 md:scale-[0.1] scale-[0.068]">
+                <p className="text-black lg:w-[45rem] w-[18rem] absolute sm:mt-3 mt-1 md:scale-[0.1] scale-[0.068]">
                     Have a project idea or just want to say hi? I'm always excited to connect with fellow developers, designers, and creators. Drop me a message and let's make it happen!
  
                 </p>
