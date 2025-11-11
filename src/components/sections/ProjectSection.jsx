@@ -24,7 +24,7 @@ const ProjectSection = () => {
       id: 2,
       title: "prject-2",
       imageSrc: "/projects/project-2.png",
-      link:"",
+      link:"https://url-shortner-two-phi.vercel.app/",
     },
 
     {
