@@ -35,7 +35,7 @@ const ContactFormModal = ({
             <div className="flex justify-between items-center mb-4">
               <h1 className="text-2xl font-bold text-gray-300">Get In Touch</h1>
 
-              <button onClick={openContactForm}>
+              <button onClick={openContactForm} className="cursor-pointer">
                 <FiX className="w-5 h-5 text-gray-300 font-extrabold" />
               </button>
             </div>

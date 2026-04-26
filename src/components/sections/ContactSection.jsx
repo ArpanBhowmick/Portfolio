@@ -126,7 +126,7 @@ const ContactSection = ({id}) => {
             >
 
                 <h1 className="text-black md:w-110 w-[90rem] lg:scale-[0.4] sm:scale-[0.
-                25] scale-[0.07] md:font-bold text-xl sm:text-3xl md:text-5xl lg:text-sm leading-none mb-5 font-bold ">
+                25] scale-[0.07] md:font-bold text-2xl sm:text-3xl md:text-5xl lg:text-sm leading-none mb-5 font-bold ">
                      Let's Get in Touch 
                 </h1>
 
@@ -137,7 +137,7 @@ const ContactSection = ({id}) => {
 
                 {/* call to action button  */}
 
-                <button className="px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-7 mt-6 text-nowrap "  onClick={() => window.dispatchEvent(new Event("openContactModal"))}>
+                <button className="px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-7 mt-6 text-nowrap cursor-pointer"  onClick={() => window.dispatchEvent(new Event("openContactModal"))}>
                     contact me 
                 </button>
 

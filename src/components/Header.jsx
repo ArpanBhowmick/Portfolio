@@ -262,7 +262,7 @@ const Header = () => {
           <motion.button
             whileTap={{ scale: 0.7 }}
             onClick={toggleMenu}
-            className="text-gray-300"
+            className="text-gray-300 cursor-pointer"
           >
             {isOpen ? (
               <FiX className="h-6 w-6" />
@@ -336,7 +336,7 @@ const Header = () => {
               toggleMenu();
               openContactForm();
             }}
-            className="mt-4 block w-full py-2 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 font-bold "
+            className="mt-4 block w-full py-2 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 font-bold cursor-pointer"
           >
             Contact Me
           </motion.button>
