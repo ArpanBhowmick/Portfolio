@@ -15,16 +15,6 @@ const ContactSection = ({id}) => {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger)
 
-        const cleanUp = () => {
-            ScrollTrigger.getAll().forEach((st) => {
-                if (st.vars.trigger === sectionRef.current) {
-                    st.kill(true)
-                }
-            });
-        }
-
-        cleanUp()
-
         gsap.set(circleRef.current, {scale: 1, backgroundColor: "white"})
         gsap.set(initialTextRef.current, {opacity: 1})
         gsap.set(finalTextRef.current, {opacity: 0})
@@ -94,7 +84,14 @@ const ContactSection = ({id}) => {
         },0.7
     )
 
-    return cleanUp
+
+        return () => {
+            ScrollTrigger.getAll().forEach((st) => {
+                if (st.vars.trigger === sectionRef.current) {
+                    st.kill()
+                }
+            })
+        }
 
     }, [])
 
@@ -104,8 +101,10 @@ const ContactSection = ({id}) => {
     <section
     id={id}
     ref={sectionRef}
-    className="w-full h-screen overflow-hidden flex items-center justify-center bg-black relative" 
-    style={{overscrollBehavior: "none"}}>
+    className="w-full h-screen flex items-center justify-center bg-black relative" 
+    style={{touchAction: "pan-y"}}>
+
+        <div className="w-full h-full overflow-hidden flex items-center justify-center">
 
         {/* simple circle with minimal nesting  */}
 
@@ -144,6 +143,8 @@ const ContactSection = ({id}) => {
 
             </div>
 
+
+        </div>
 
         </div>
 

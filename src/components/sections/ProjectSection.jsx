@@ -15,16 +15,16 @@ const ProjectSection = () => {
   const projectImages = [
     {
       id: 1,
-      title: "Todo App",
-      imageSrc: "/projects/project-1.png",
-      link:"https://todo-app-28.vercel.app/",
+      title: "URL Shortner",
+      imageSrc: "/projects/project-2.png",
+      link:"https://url-shortner-two-phi.vercel.app/",
     },
 
     {
       id: 2,
-      title: "prject-2",
-      imageSrc: "/projects/project-2.png",
-      link:"https://url-shortner-two-phi.vercel.app/",
+      title: "Todo App",
+      imageSrc: "/projects/project-1.png",
+      link:"https://todo-app-28.vercel.app/",
     },
 
     {
